@@ -9,6 +9,7 @@ load now; these tests hold each endpoint to the values the fallbacks returned.
 
 from django.test import TestCase
 from django.utils import timezone
+from rest_framework.fields import DateTimeField
 from rest_framework.test import APIClient
 
 from api.tests.utils import (
@@ -41,6 +42,11 @@ class AlbumUserCardPayloadTest(TestCase):
         self.assertEqual(card["id"], self.album.id)
         self.assertEqual(card["title"], "pinned")
         self.assertEqual(card["photo_count"], 3)
+        self.album.refresh_from_db()
+        self.assertEqual(
+            card["last_modified"],
+            DateTimeField().to_representation(self.album.last_modified),
+        )
         self.assertEqual(card["cover_photo"]["image_hash"], cover.image_hash)
         self.assertEqual(card["owner"]["id"], self.owner.id)
         self.assertEqual([user["id"] for user in card["shared_to"]], [self.friend.id])

@@ -45,6 +45,9 @@ export const UserAlbumInfo = z.object({
   owner: SimpleUser,
   shared_to: SimpleUser.array(),
   created_on: z.string(),
+  // When the album, its photos or its sharing last changed. Optional: backends
+  // before this field shipped do not send it.
+  last_modified: z.string().optional(),
   favorited: z.boolean(),
   locked: z.boolean().optional().default(false),
   public: z.boolean().optional(),

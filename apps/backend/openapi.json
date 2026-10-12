@@ -8251,6 +8251,11 @@
             "format": "date-time",
             "readOnly": true
           },
+          "last_modified": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
           "favorited": {
             "type": "boolean"
           },
@@ -8307,6 +8312,7 @@
           "created_on",
           "favorited",
           "id",
+          "last_modified",
           "locked",
           "owner",
           "photo_count",

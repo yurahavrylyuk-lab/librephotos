@@ -325,6 +325,9 @@ class AlbumUserListSerializer(serializers.ModelSerializer):
             "id",
             "cover_photo",
             "created_on",
+            # The delta-sync column, now on the album card so a client can
+            # tell a renamed or reshared album from an unchanged one.
+            "last_modified",
             "favorited",
             "locked",
             "title",
